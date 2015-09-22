@@ -15,6 +15,7 @@ private:
 	int						firstWordLength;
 	std::set<std::string>*	dictionary;
 	std::set<std::string>::iterator dictIT;
+	std::set<std::string>* 	repeatedFirstLetterDict;
 	std::vector<std::string>* keys;
 
 	void recursiveEnmuneration(std::vector<std::string>* keyStringVector, std::string prefix, int n, int prefixLength);
@@ -26,7 +27,7 @@ public:
 
 	void crack(std::string* cText, int keyLen, int firstWordLen); 
 	bool isAWord(std::string* word);
-	void loadDictionary(char* dict);
+	void loadDictionary(char* dict, int keyLen);
 	void enumerate(int a_keyLength);
 };
 

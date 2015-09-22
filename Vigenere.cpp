@@ -95,7 +95,7 @@ std::string* const key
 		decryptedLetter = charDecryptedLetter;
 		decryptedText.append(decryptedLetter);
 	}
-
+//std::cout << "Key: " << *key << "\tPlaintext: " << decryptedText << std::endl;
 	return decryptedText;
 }
 

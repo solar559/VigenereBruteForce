@@ -18,7 +18,7 @@ private:
 	std::set<std::string>* 	repeatedFirstLetterDict;
 	std::vector<std::string>* keys;
 
-	void recursiveEnmuneration(std::vector<std::string>* keyStringVector, std::string prefix, int n, int prefixLength);
+	void recursiveEnumeration(std::vector<std::string>* keyStringVector, std::string prefix, int n, int prefixLength);
 
 public:
 	BruteForce();
@@ -26,9 +26,14 @@ public:
 	~BruteForce();
 
 	void crack(std::string* cText, int keyLen, int firstWordLen); 
+	bool intelligentCrack(std::string* cText, int keyLen, int firstWordLen, int curKeyEnumLength, std::string curKeyEnum);
 	bool isAWord(std::string* word);
+	bool intelligentIsAWord(std::string* word, int length);
 	void loadDictionary(char* dict, int keyLen);
 	void enumerate(int a_keyLength);
+
+	void RunUnoptimizedTests(char* dictionary_file);
+	void RunOptimizedTests(char* dictionary_file);
 };
 
 #include "BruteForce.cpp"

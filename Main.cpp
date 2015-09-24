@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <ctime>
+#include <cstdio>
 
 int main
 	(
@@ -11,35 +13,51 @@ int main
 	char* argv[]
 	)
 {
+	if(argc != 2)
+	{
+		printf("Expecting a dictionary.txt file\nExiting. . .\n");
+		return 0;
+	}
 	Vigenere myVigenere;
 	BruteForce mBF;
-	
-	std::string cipher1 = "MSOKKJCOSXOEEKDTOSLGFWCMCHSUSGX";
-	std::string cipher2 = "OOPCULNWFRCFQAQJGPNARMEYUODYOUNRGWORQEPVARCEPBBSCEQYEARAJUYGWWYACYWBPRNEJBMDTEAEYCCFJNENSGWAQRTSJTGXNRQRMDGFEEPHSJRGFCFMACCB";
-	std::string cipher3 = "MTZHZEOQKASVBDOWMWMKMNYIIHVWPEXJA";
-	std::string cipher4 = "HUETNMIXVTMQWZTQMMZUNZXNSSBLNSJVSJQDLKR";
-	std::string cipher5 = "LDWMEKPOPSWNOAVBIDHIPCEWAETYRVOAUPSINOVDIEDHCDSELHCCPVHRPOHZUSERSFS";
-	std::string cipher6 = "VVVLZWWPBWHZDKBTXLDCGOTGTGRWAQWZSDHEMXLBELUMO";
-/*
-	// Decipher
-	printf("Initiating Decipher. . .\n");
-	mBF.loadDictionary(argv[1], 7);
-	mBF.crack(&cipher1, 2, 6);
+	clock_t start;
+	double duration;
+	int userInput;
 
-	mBF.loadDictionary(argv[1], 8);
-	mBF.crack(&cipher2, 3, 7);
+	while(userInput != 4)
+	{
+		printf("\n=============================================\n");
+		printf("Choose one of the following options:\n");
+		printf("1. Test Vigenere encrypt/decrypt\n");
+		printf("2. Test rudimentary brute force algorithm\n");
+		printf("3. Test optimized brute force algorithm\n");
+		printf("4. exit\n");
+		printf("=============================================\n");
 
-	mBF.loadDictionary(argv[1], 11);
-	mBF.crack(&cipher3, 4, 10);
+		std::cin >> userInput;
 
-	mBF.loadDictionary(argv[1], 12);
-	mBF.crack(&cipher4, 5, 11);
-*/
-	mBF.loadDictionary(argv[1], 7);
-	mBF.crack(&cipher5, 6, 9);
-/*
-	mBF.loadDictionary(argv[1], 8);
-	mBF.crack(&cipher6, 7, 13);
-*/
+		switch (userInput)
+		{
+			case 1:
+				myVigenere.test();
+				break;
+
+			case 2:
+				mBF.RunUnoptimizedTests(argv[1]);
+				break;
+
+			case 3:
+				mBF.RunOptimizedTests(argv[1]);
+				break;
+
+			case 4:
+				userInput = 4;
+				break;
+
+			default:
+				printf("Unexpected input\n");
+				break;
+		}
+	}
 	return 0;
 }
